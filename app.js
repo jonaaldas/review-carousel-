@@ -23,7 +23,7 @@ let reviews = [
 // DOM elements
 const title = document.querySelector('.title');
 const img = document.querySelector('img');
-const name = document.querySelector('.name');
+const name1 = document.querySelector('.name');
 const role = document.querySelector('.role');
 const review = document.querySelector('.review-p');
 
@@ -38,3 +38,34 @@ const btn = document.querySelector('.btn');
 //starting state 
 let startingState = 0;
 
+
+
+arrowRight.addEventListener('click', function(){
+    startingState++
+    if(startingState > reviews.length -1){
+        startingState = 0
+    } 
+        parseName(startingState)
+});
+
+arrowLeft.addEventListener('click', function(){
+    startingState--;
+
+    if(startingState < 0){
+        startingState = reviews.length - 1
+    } 
+    parseName(startingState)
+});
+
+//suprise button
+btn.addEventListener('click', function(){
+    startingState = Math.abs(Math.round((Math.random() * reviews.length) - 1));
+    parseName(startingState)
+})
+
+function parseName(startingState){
+    img.src = reviews[startingState].img;
+    name1.innerText = reviews[startingState].name;
+    role.innerText = reviews[startingState].role;
+    review.innerText = reviews[startingState].review;
+}
